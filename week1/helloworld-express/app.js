@@ -1,8 +1,13 @@
 var express = require('express'),
-    app = express();
+    cons = require('consolidate'),
+	app = express();
+
+app.engine('html', cons.swig);
+app.set('view engine', 'html');
+app.set('views', __dirname + '/views');
 
 app.get('/', function (req, res) {
-    res.send('Hello, World!');
+    res.render('home', { 'name' : 'PARDNER' });
 });
 
 app.get('*', function (req, res) {
