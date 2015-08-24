@@ -12,7 +12,6 @@ var mongoclient = new MongoClient(new Server("localhost", 27017));
 var db = mongoclient.db('demo');
 
 app.get('/', function(req, res){
-
     // Find one document in our collection
     db.collection('hello_mongo_express').findOne({}, function(err, doc) {
 
