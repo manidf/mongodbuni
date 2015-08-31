@@ -1,8 +1,8 @@
-var express = require('express'),
+var express = require('../node_modules/express'),
     app = express(),
-    cons = require('consolidate'),
-    MongoClient = require('mongodb').MongoClient,
-    Server = require('mongodb').Server;
+    cons = require('../node_modules/consolidate'),
+    MongoClient = require('../node_modules/mongodb').MongoClient,
+    Server = require('../node_modules/mongodb').Server;
 
 app.engine('html', cons.swig);
 app.set('view engine', 'html');

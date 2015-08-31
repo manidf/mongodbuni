@@ -1,14 +1,13 @@
-var express = require('../node_modules/express');
-var app = express();
-var cons = require('../node_modules/consolidate');
+var express = require('express'),
+    app = express(),
+    cons = require('consolidate');
 
 app.engine('html', cons.swig);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
 app.use(express.bodyParser());
-//app.get(app.router);
 
-// Handle for the internal server errors
+//Handler for internal server errors
 function errorHandler(err, req, res, next) {
     console.error(err.message);
     console.error(err.stack);
@@ -18,12 +17,18 @@ function errorHandler(err, req, res, next) {
 
 app.use(errorHandler);
 
-app.get('/:name', function(req, res, next) {
-    var name = req.params.name;
-    var getvar1 = req.query.getvar1;
-    var getvar2 = req.query.getvar2;
-    res.render('hello', { name: name, getvar1: getvar1, getvar2: getvar2 });
+app.get('/', function(req,res, next) {
+    res.render('fruitPicker', { 'fruits' : [ 'apple', 'orange', 'banana', 'peach' ]});
 });
 
-app.listen(3000);
-console.log('Express server listening on port 3000');
+app.post('/favourite_fruit', function(req, res, next) {
+    var favourite = req.body.fruit;
+    if (typeof favourite == 'undefined') {
+        next(Error('Please choose a fruit'))
+    } else {
+        res.send("your favourite fruit is " + favourite);
+    }
+});
+
+app.listen(3020);
+console.log("Express server listening on port 3020");
