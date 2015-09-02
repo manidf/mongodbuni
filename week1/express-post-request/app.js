@@ -18,7 +18,7 @@ function errorHandler(err, req, res, next) {
 app.use(errorHandler);
 
 app.get('/', function(req,res, next) {
-    res.render('fruitPicker', { 'fruits' : [ 'apple', 'orange', 'banana', 'peach' ]});
+    res.render('fruitPicker', { 'fruits' : [ 'apple', 'orange', 'banana', 'peach', 'strawberries' ]});
 });
 
 app.post('/favourite_fruit', function(req, res, next) {
